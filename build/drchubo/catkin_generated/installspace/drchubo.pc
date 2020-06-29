@@ -1,0 +1,8 @@
+prefix=/home/jessparr/ws_moveit/install
+
+Name: drchubo
+Description: Description of drchubo
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

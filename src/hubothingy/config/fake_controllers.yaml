@@ -1,0 +1,26 @@
+controller_list:
+  - name: fake_left_arm_controller
+    joints:
+      - LSP
+      - LSR
+      - LSY
+      - LEP
+      - LWY
+      - LWP
+  - name: fake_left_hand_controller
+    joints:
+      - LWR
+      - LF11
+      - LF12
+      - LF13
+      - LF21
+      - LF22
+      - LF23
+      - LF31
+      - LF32
+      - LF33
+initial:  # Define initial robot poses.
+  - group: left_arm
+    pose: home
+  - group: left_hand
+    pose: left_hand_close

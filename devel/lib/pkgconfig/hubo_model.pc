@@ -1,0 +1,1 @@
+/home/jessparr/ws_moveit/devel/.private/hubo_model/lib/pkgconfig/hubo_model.pc

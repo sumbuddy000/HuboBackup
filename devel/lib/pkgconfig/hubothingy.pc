@@ -1,0 +1,1 @@
+/home/jessparr/ws_moveit/devel/.private/hubothingy/lib/pkgconfig/hubothingy.pc

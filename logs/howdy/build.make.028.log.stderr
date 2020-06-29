@@ -1,0 +1,7 @@
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:176:51:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[Kgeometry_msgs::Quaternion {aka geometry_msgs::Quaternion_<std::allocator<void> >}[m[K’ to ‘[01m[Kgeometry_msgs::Quaternion_<std::allocator<void> >::_w_type {aka double}[m[K’ in assignment
+   pose.pose.orientation.w = tf2::toMsg(orientation[01;31m[K)[m[K;
+                                                   [01;31m[K^[m[K
+make[2]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/src/motion_planning_api_edit.cpp.o] Error 1
+make[1]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/all] Error 2
+make: *** [all] Error 2

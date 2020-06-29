@@ -1,0 +1,8 @@
+prefix=/home/jessparr/ws_moveit/devel/.private/howdy
+
+Name: howdy
+Description: Description of howdy
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

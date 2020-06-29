@@ -1,0 +1,8 @@
+prefix=/home/jessparr/ws_moveit/devel/.private/hubothingy
+
+Name: hubothingy
+Description: Description of hubothingy
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

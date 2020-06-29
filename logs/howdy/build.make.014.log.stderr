@@ -1,0 +1,43 @@
+In file included from [01m[K/opt/ros/melodic/include/pluginlib/./class_loader.hpp:42:0[m[K,
+                 from [01m[K/opt/ros/melodic/include/pluginlib/class_loader.h:35[m[K,
+                 from [01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:37[m[K:
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:150:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kend_effector_state[m[K’ was not declared in this scope
+   ROS_INFO_STREAM("Translation: \n" << [01;31m[Ke[m[Knd_effector_state.translation() << "\n");
+                                        [01;31m[K^[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:358:64:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION_WITH_FILTER[m[K’
+     __rosconsole_print_stream_at_location_with_filter__ss__ << [01;36m[Kargs[m[K; \
+                                                                [01;36m[K^~~~[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:406:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K’
+       [01;36m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K(args); \
+       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:579:43:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM_COND[m[K’
+ #define ROS_LOG_STREAM(level, name, args) [01;36m[KROS_LOG_STREAM_COND[m[K(true, level, name, args)
+                                           [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/melodic/include/rosconsole/macros_generated.h:111:31:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM[m[K’
+ #define ROS_INFO_STREAM(args) [01;36m[KROS_LOG_STREAM[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, args)
+                               [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:150:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO_STREAM[m[K’
+   [01;36m[KR[m[KOS_INFO_STREAM("Translation: \n" << end_effector_state.translation() << "\n");
+   [01;36m[K^[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:151:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kend_effector_state[m[K’ was not declared in this scope
+   ROS_INFO_STREAM("Rotation: \n" << [01;31m[Ke[m[Knd_effector_state.rotation() << "\n");
+                                     [01;31m[K^[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:358:64:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION_WITH_FILTER[m[K’
+     __rosconsole_print_stream_at_location_with_filter__ss__ << [01;36m[Kargs[m[K; \
+                                                                [01;36m[K^~~~[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:406:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K’
+       [01;36m[KROSCONSOLE_PRINT_STREAM_AT_LOCATION[m[K(args); \
+       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/melodic/include/ros/console.h:579:43:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM_COND[m[K’
+ #define ROS_LOG_STREAM(level, name, args) [01;36m[KROS_LOG_STREAM_COND[m[K(true, level, name, args)
+                                           [01;36m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/melodic/include/rosconsole/macros_generated.h:111:31:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_STREAM[m[K’
+ #define ROS_INFO_STREAM(args) [01;36m[KROS_LOG_STREAM[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, args)
+                               [01;36m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:151:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO_STREAM[m[K’
+   [01;36m[KR[m[KOS_INFO_STREAM("Rotation: \n" << end_effector_state.rotation() << "\n");
+   [01;36m[K^[m[K
+make[2]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/src/motion_planning_api_edit.cpp.o] Error 1
+make[1]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/all] Error 2
+make: *** [all] Error 2

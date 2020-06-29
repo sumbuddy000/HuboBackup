@@ -1,0 +1,594 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="drchubo">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="left_arm">
+        <chain base_link="Body_Torso" tip_link="Body_LWP" />
+    </group>
+    <group name="left_hand">
+        <joint name="LF11" />
+        <joint name="LF12" />
+        <joint name="LF13" />
+        <joint name="LF21" />
+        <joint name="LF22" />
+        <joint name="LF23" />
+        <joint name="LF31" />
+        <joint name="LF32" />
+        <joint name="LF33" />
+        <joint name="LWR" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="left_arm">
+        <joint name="LEP" value="0" />
+        <joint name="LSP" value="0" />
+        <joint name="LSR" value="0" />
+        <joint name="LSY" value="0" />
+        <joint name="LWP" value="0" />
+        <joint name="LWY" value="0" />
+    </group_state>
+    <group_state name="left_hand_close" group="left_hand">
+        <joint name="LF11" value="0.1" />
+        <joint name="LF12" value="0.1" />
+        <joint name="LF13" value="0.1" />
+        <joint name="LF21" value="0.1" />
+        <joint name="LF22" value="0.1" />
+        <joint name="LF23" value="0.1" />
+        <joint name="LF31" value="0" />
+        <joint name="LF32" value="0" />
+        <joint name="LF33" value="0" />
+        <joint name="LWR" value="0" />
+    </group_state>
+    <group_state name="left_hand_open" group="left_hand">
+        <joint name="LF11" value="-0.5" />
+        <joint name="LF12" value="0.1" />
+        <joint name="LF13" value="0.1" />
+        <joint name="LF21" value="-0.5" />
+        <joint name="LF22" value="0.1" />
+        <joint name="LF23" value="0.1" />
+        <joint name="LF31" value="0" />
+        <joint name="LF32" value="0" />
+        <joint name="LF33" value="0" />
+        <joint name="LWR" value="0" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="left_hand_group" parent_link="Body_LWP" group="left_hand" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint1" type="fixed" parent_frame="world" child_link="Body_TSY" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="Body_LAP" link2="Body_LAR" reason="Adjacent" />
+    <disable_collisions link1="Body_LAP" link2="Body_LHP" reason="Never" />
+    <disable_collisions link1="Body_LAP" link2="Body_LHR" reason="Never" />
+    <disable_collisions link1="Body_LAP" link2="Body_LKP" reason="Adjacent" />
+    <disable_collisions link1="Body_LAP" link2="Body_NK1" reason="Never" />
+    <disable_collisions link1="Body_LAP" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LAP" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LAR" link2="Body_LKP" reason="Default" />
+    <disable_collisions link1="Body_LAR" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF11" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF12" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF13" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF21" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF22" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF23" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF32" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LF33" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LSP" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LSR" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LSY" reason="Adjacent" />
+    <disable_collisions link1="Body_LEP" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LWR" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_LWY" reason="Adjacent" />
+    <disable_collisions link1="Body_LEP" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LEP" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF12" reason="Adjacent" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF13" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF21" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF22" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF23" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_LWR" reason="Adjacent" />
+    <disable_collisions link1="Body_LF11" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_LF11" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LF13" reason="Adjacent" />
+    <disable_collisions link1="Body_LF12" link2="Body_LF21" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LF22" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LF23" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_LWR" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_LF12" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LF21" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LF22" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LF23" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_LWR" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_LF13" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_LF22" reason="Adjacent" />
+    <disable_collisions link1="Body_LF21" link2="Body_LF23" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_LWR" reason="Adjacent" />
+    <disable_collisions link1="Body_LF21" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF21" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_LF23" reason="Adjacent" />
+    <disable_collisions link1="Body_LF22" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_LWR" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF22" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_LF31" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_LWR" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF23" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_LF32" reason="Adjacent" />
+    <disable_collisions link1="Body_LF31" link2="Body_LF33" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_LWR" reason="Adjacent" />
+    <disable_collisions link1="Body_LF31" link2="Body_LWY" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF31" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_LF33" reason="Adjacent" />
+    <disable_collisions link1="Body_LF32" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF32" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_LWP" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LF33" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_LHR" reason="Adjacent" />
+    <disable_collisions link1="Body_LHP" link2="Body_LHY" reason="Default" />
+    <disable_collisions link1="Body_LHP" link2="Body_LKP" reason="Adjacent" />
+    <disable_collisions link1="Body_LHP" link2="Body_LSP" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_LSR" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_NK1" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LHP" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_LHY" reason="Adjacent" />
+    <disable_collisions link1="Body_LHR" link2="Body_LKP" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_LSP" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_LSR" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_LSY" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_NK1" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_LHR" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_LSP" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_LSR" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_NK1" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LHY" link2="Body_TSY" reason="Adjacent" />
+    <disable_collisions link1="Body_LHY" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LKP" link2="Body_NK1" reason="Never" />
+    <disable_collisions link1="Body_LKP" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LKP" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_LSR" reason="Adjacent" />
+    <disable_collisions link1="Body_LSP" link2="Body_LSY" reason="Default" />
+    <disable_collisions link1="Body_LSP" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_RWY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_LSP" link2="Body_Torso" reason="Adjacent" />
+    <disable_collisions link1="Body_LSR" link2="Body_LSY" reason="Adjacent" />
+    <disable_collisions link1="Body_LSR" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_RWY" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_LSR" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_NK2" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_NKY" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LSY" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_LWR" reason="Adjacent" />
+    <disable_collisions link1="Body_LWP" link2="Body_LWY" reason="Adjacent" />
+    <disable_collisions link1="Body_LWP" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LWP" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_LWR" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_LWY" link2="Body_RWY" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_NK2" reason="Adjacent" />
+    <disable_collisions link1="Body_NK1" link2="Body_NKY" reason="Adjacent" />
+    <disable_collisions link1="Body_NK1" link2="Body_RAP" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_RKP" reason="Never" />
+    <disable_collisions link1="Body_NK1" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RAP" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RKP" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_NK2" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RAP" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_REP" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RHY" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RKP" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_NKY" link2="Body_Torso" reason="Adjacent" />
+    <disable_collisions link1="Body_RAP" link2="Body_RAR" reason="Adjacent" />
+    <disable_collisions link1="Body_RAP" link2="Body_RHP" reason="Never" />
+    <disable_collisions link1="Body_RAP" link2="Body_RHR" reason="Never" />
+    <disable_collisions link1="Body_RAP" link2="Body_RKP" reason="Adjacent" />
+    <disable_collisions link1="Body_RAR" link2="Body_RKP" reason="Default" />
+    <disable_collisions link1="Body_REP" link2="Body_RF11" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF12" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RSY" reason="Adjacent" />
+    <disable_collisions link1="Body_REP" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_REP" link2="Body_RWY" reason="Adjacent" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF12" reason="Adjacent" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF13" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF11" link2="Body_RWR" reason="Adjacent" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF13" reason="Adjacent" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF12" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF21" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF22" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF13" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF22" reason="Adjacent" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF23" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF21" link2="Body_RWR" reason="Adjacent" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF23" reason="Adjacent" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF22" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF31" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF32" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF23" link2="Body_RWR" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RF32" reason="Adjacent" />
+    <disable_collisions link1="Body_RF31" link2="Body_RF33" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF31" link2="Body_RWR" reason="Adjacent" />
+    <disable_collisions link1="Body_RF31" link2="Body_RWY" reason="Never" />
+    <disable_collisions link1="Body_RF32" link2="Body_RF33" reason="Adjacent" />
+    <disable_collisions link1="Body_RF32" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF32" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF32" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF32" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF33" link2="Body_RF41" reason="Never" />
+    <disable_collisions link1="Body_RF33" link2="Body_RF42" reason="Never" />
+    <disable_collisions link1="Body_RF33" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF33" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF41" link2="Body_RF42" reason="Adjacent" />
+    <disable_collisions link1="Body_RF41" link2="Body_RF43" reason="Never" />
+    <disable_collisions link1="Body_RF41" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF41" link2="Body_RWR" reason="Adjacent" />
+    <disable_collisions link1="Body_RF42" link2="Body_RF43" reason="Adjacent" />
+    <disable_collisions link1="Body_RF42" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RF43" link2="Body_RWP" reason="Never" />
+    <disable_collisions link1="Body_RHP" link2="Body_RHR" reason="Adjacent" />
+    <disable_collisions link1="Body_RHP" link2="Body_RHY" reason="Default" />
+    <disable_collisions link1="Body_RHP" link2="Body_RKP" reason="Adjacent" />
+    <disable_collisions link1="Body_RHP" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_RHP" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_RHP" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_RHY" reason="Adjacent" />
+    <disable_collisions link1="Body_RHR" link2="Body_RKP" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_RSY" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_RHR" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_RHY" link2="Body_RSP" reason="Never" />
+    <disable_collisions link1="Body_RHY" link2="Body_RSR" reason="Never" />
+    <disable_collisions link1="Body_RHY" link2="Body_TSY" reason="Adjacent" />
+    <disable_collisions link1="Body_RHY" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_RSP" link2="Body_RSR" reason="Adjacent" />
+    <disable_collisions link1="Body_RSP" link2="Body_RSY" reason="Default" />
+    <disable_collisions link1="Body_RSP" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_RSP" link2="Body_Torso" reason="Adjacent" />
+    <disable_collisions link1="Body_RSR" link2="Body_RSY" reason="Adjacent" />
+    <disable_collisions link1="Body_RSR" link2="Body_TSY" reason="Never" />
+    <disable_collisions link1="Body_RSR" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_RSY" link2="Body_Torso" reason="Never" />
+    <disable_collisions link1="Body_RWP" link2="Body_RWR" reason="Adjacent" />
+    <disable_collisions link1="Body_RWP" link2="Body_RWY" reason="Adjacent" />
+    <disable_collisions link1="Body_TSY" link2="Body_Torso" reason="Adjacent" />
+</robot>

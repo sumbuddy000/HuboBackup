@@ -1,0 +1,74 @@
+controller_list:
+  - name: fake_left_arm_controller
+    joints:
+      - LSP
+      - LSR
+      - LSY
+      - LEP
+      - LWY
+      - LWP
+  - name: fake_left_hand_controller
+    joints:
+      - LWR
+      - LF11
+      - LF12
+      - LF13
+      - LF21
+      - LF22
+      - LF23
+      - LF31
+      - LF32
+      - LF33
+  - name: fake_right_arm_controller
+    joints:
+      - RSP
+      - RSR
+      - RSY
+      - REP
+      - RWY
+      - RWP
+  - name: fake_right_hand_controller
+    joints:
+      - RWR
+      - RF11
+      - RF12
+      - RF13
+      - RF21
+      - RF22
+      - RF23
+      - RF31
+      - RF32
+      - RF33
+      - RF41
+      - RF42
+      - RF43
+  - name: fake_torso_controller
+    joints:
+      - virtual_joint1
+      - TSY
+  - name: fake_head_controller
+    joints:
+      - NKY
+      - NK1
+      - NK2
+  - name: fake_left_leg_controller
+    joints:
+      - LHY
+      - LHR
+      - LHP
+      - LKP
+      - LAP
+      - LAR
+  - name: fake_right_leg_controller
+    joints:
+      - RHY
+      - RHR
+      - RHP
+      - RKP
+      - RAP
+      - RAR
+initial:  # Define initial robot poses.
+  - group: left_arm
+    pose: home
+  - group: left_hand
+    pose: left_hand_close

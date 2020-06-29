@@ -1,0 +1,161 @@
+# Simulation settings for using moveit_sim_controllers
+moveit_sim_hw_interface:
+  joint_model_group: left_arm
+  joint_model_group_pose: home
+# Settings for ros_control_boilerplate control loop
+generic_hw_control_loop:
+  loop_hz: 300
+  cycle_time_error_threshold: 0.01
+# Settings for ros_control hardware interface
+hardware_interface:
+  joints:
+    - virtual_joint1
+    - LHY
+    - LHR
+    - LHP
+    - LKP
+    - LAP
+    - LAR
+    - RHY
+    - RHR
+    - RHP
+    - RKP
+    - RAP
+    - RAR
+    - TSY
+    - LSP
+    - LSR
+    - LSY
+    - LEP
+    - LWY
+    - LWP
+    - LWR
+    - LF11
+    - LF12
+    - LF13
+    - LF21
+    - LF22
+    - LF23
+    - LF31
+    - LF32
+    - LF33
+    - NKY
+    - NK1
+    - NK2
+    - RSP
+    - RSR
+    - RSY
+    - REP
+    - RWY
+    - RWP
+    - RWR
+    - RF11
+    - RF12
+    - RF13
+    - RF21
+    - RF22
+    - RF23
+    - RF31
+    - RF32
+    - RF33
+    - RF41
+    - RF42
+    - RF43
+  sim_control_mode: 1  # 0: position, 1: velocity
+# Publish all joint states
+# Creates the /joint_states topic necessary in ROS
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+controller_list:
+  - name: left_arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - LSP
+      - LSR
+      - LSY
+      - LEP
+      - LWY
+      - LWP
+  - name: left_hand_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - LWR
+      - LF11
+      - LF12
+      - LF13
+      - LF21
+      - LF22
+      - LF23
+      - LF31
+      - LF32
+      - LF33
+  - name: right_arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - RSP
+      - RSR
+      - RSY
+      - REP
+      - RWY
+      - RWP
+  - name: right_hand_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - RWR
+      - RF11
+      - RF12
+      - RF13
+      - RF21
+      - RF22
+      - RF23
+      - RF31
+      - RF32
+      - RF33
+      - RF41
+      - RF42
+      - RF43
+  - name: torso_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      []
+  - name: head_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - NKY
+      - NK1
+      - NK2
+  - name: left_leg_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - LHY
+      - LHR
+      - LHP
+      - LKP
+      - LAP
+      - LAR
+  - name: right_leg_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - RHY
+      - RHR
+      - RHP
+      - RKP
+      - RAP
+      - RAR

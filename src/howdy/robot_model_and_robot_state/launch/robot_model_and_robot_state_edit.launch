@@ -1,0 +1,13 @@
+<launch>
+  <include file="$(find hubothingy)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="robot_model_and_robot_state_edit"
+        pkg="howdy"
+        type="robot_model_and_robot_state_edit"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find hubothingy)/config/kinematics.yaml"/>
+  </node>
+</launch>

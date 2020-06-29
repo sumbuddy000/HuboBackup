@@ -1,0 +1,8 @@
+prefix=/home/jessparr/ws_moveit/install
+
+Name: hubo_model
+Description: Description of hubo_model
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

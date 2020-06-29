@@ -1,0 +1,8 @@
+[01m[Kc++:[m[K [01;31m[Kinternal compiler error: [m[KKilled (program cc1plus)
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <file:///usr/share/doc/gcc-7/README.Bugs> for instructions.
+make[2]: *** [planning_components_tools/CMakeFiles/moveit_print_planning_scene_info.dir/src/print_planning_scene_info.cpp.o] Error 4
+make[1]: *** [planning_components_tools/CMakeFiles/moveit_print_planning_scene_info.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2

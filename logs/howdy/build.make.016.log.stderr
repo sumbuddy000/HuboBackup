@@ -1,0 +1,11 @@
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:153:49:[m[K [01;31m[Kerror: [m[K‘[01m[Kkinematic_state[m[K’ was not declared in this scope
+   const Eigen::Isometry3d& end_effector_state = [01;31m[Kkinematic_state[m[K->getGlobalLinkTransform("Body_LWP");
+                                                 [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:153:49:[m[K [01;36m[Knote: [m[Ksuggested alternative: ‘[01m[Kinitstate[m[K’
+   const Eigen::Isometry3d& end_effector_state = [01;36m[Kkinematic_state[m[K->getGlobalLinkTransform("Body_LWP");
+                                                 [01;36m[K^~~~~~~~~~~~~~~[m[K
+                                                 [32m[Kinitstate[m[K
+make[2]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/src/motion_planning_api_edit.cpp.o] Error 1
+make[1]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/all] Error 2
+make: *** [all] Error 2

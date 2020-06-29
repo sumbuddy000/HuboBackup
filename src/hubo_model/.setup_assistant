@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: drchubo
+    relative_path: drchubo.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/drchubo.srdf
+  CONFIG:
+    author_name: testing
+    author_email: yoursecretboii@gmail.com
+    generated_timestamp: 1593181308

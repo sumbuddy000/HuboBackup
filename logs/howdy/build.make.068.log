@@ -1,0 +1,6 @@
+[35m[1mScanning dependencies of target pick_place_edit[0m
+[ 33%] Built target robot_model_and_robot_state_edit
+[ 66%] Built target motion_planning_api_edit
+[ 83%] [32mBuilding CXX object pick_place/CMakeFiles/pick_place_edit.dir/src/pick_place_edit.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/jessparr/ws_moveit/devel/.private/howdy/lib/howdy/pick_place_edit[0m
+[100%] Built target pick_place_edit

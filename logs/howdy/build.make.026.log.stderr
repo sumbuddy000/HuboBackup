@@ -1,0 +1,38 @@
+[01m[K/home/jessparr/ws_moveit/src/howdy/pick_place/src/pick_place_edit.cpp:[m[K In function ‘[01m[Kvoid pick(moveit::planning_interface::MoveGroupInterface&)[m[K’:
+[01m[K/home/jessparr/ws_moveit/src/howdy/pick_place/src/pick_place_edit.cpp:139:2:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K/[m[K’ token
+ *[01;31m[K/[m[K
+  [01;31m[K^[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/pick_place/src/pick_place_edit.cpp:141:1:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K}[m[K’ token
+ [01;31m[K}[m[K
+ [01;31m[K^[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:177:19:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Ktf2::Quaternion orientation[m[K’
+   tf2::Quaternion [01;31m[Korientation[m[K;
+                   [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:165:19:[m[K [01;36m[Knote: [m[K‘[01m[Ktf2::Quaternion orientation[m[K’ previously declared here
+   tf2::Quaternion [01;36m[Korientation[m[K;
+                   [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:189:41:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kplanning_interface::MotionPlanRequest req[m[K’
+   planning_interface::MotionPlanRequest [01;31m[Kreq[m[K;
+                                         [01;31m[K^~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:170:41:[m[K [01;36m[Knote: [m[K‘[01m[Kplanning_interface::MotionPlanRequest req[m[K’ previously declared here
+   planning_interface::MotionPlanRequest [01;36m[Kreq[m[K;
+                                         [01;36m[K^~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:190:42:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kplanning_interface::MotionPlanResponse res[m[K’
+   planning_interface::MotionPlanResponse [01;31m[Kres[m[K;
+                                          [01;31m[K^~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:171:42:[m[K [01;36m[Knote: [m[K‘[01m[Kplanning_interface::MotionPlanResponse res[m[K’ previously declared here
+   planning_interface::MotionPlanResponse [01;36m[Kres[m[K;
+                                          [01;36m[K^~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:191:30:[m[K [01;31m[Kerror: [m[Kredeclaration of ‘[01m[Kgeometry_msgs::PoseStamped pose[m[K’
+   geometry_msgs::PoseStamped [01;31m[Kpose[m[K;
+                              [01;31m[K^~~~[m[K
+[01m[K/home/jessparr/ws_moveit/src/howdy/motion_planning_api/src/motion_planning_api_edit.cpp:172:30:[m[K [01;36m[Knote: [m[K‘[01m[Kgeometry_msgs::PoseStamped pose[m[K’ previously declared here
+   geometry_msgs::PoseStamped [01;36m[Kpose[m[K;
+                              [01;36m[K^~~~[m[K
+make[2]: *** [pick_place/CMakeFiles/pick_place_edit.dir/src/pick_place_edit.cpp.o] Error 1
+make[1]: *** [pick_place/CMakeFiles/pick_place_edit.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make[2]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/src/motion_planning_api_edit.cpp.o] Error 1
+make[1]: *** [motion_planning_api/CMakeFiles/motion_planning_api_edit.dir/all] Error 2
+make: *** [all] Error 2

@@ -1,0 +1,7 @@
+[01m[K/home/jessparr/ws_moveit/src/howdy/pick_place/src/pick_place_edit.cpp:41:10:[m[K [01;31m[Kfatal error: [m[Kmoveit/planning_scene_interface/planning_scene_interface.h: No such file or directory
+ #include [01;31m[K<moveit/planning_scene_interface/planning_scene_interface.h>[m[K
+          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [pick_place/CMakeFiles/pick_place_edit.dir/src/pick_place_edit.cpp.o] Error 1
+make[1]: *** [pick_place/CMakeFiles/pick_place_edit.dir/all] Error 2
+make: *** [all] Error 2
